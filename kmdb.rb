@@ -278,6 +278,24 @@ new_role14.save
 
 # Adds data for Roles & relevant associations in The Dark Knight Rises
 
+
+# Query the cast data and loop through the results to display the cast output for each movie.
+# TODO!
+
+# ==== query to find all rows in roles with relationship to Batman Begins
+# "talk" to the roles table using the Roles model:
+
+warnerbros_movies = Movie.where({ "studio_id" => warnerbros["id"] })
+
+batmanbegins_roles = Role.where({ "movie_id" => batmanbegins["id"] })
+
+thedarkknight_roles = Role.where({ "movie_id" => thedarkknight["id"] })
+
+thedarkknightrises_roles = Role.where({ "movie_id" => thedarkknightrises["id"] })
+
+
+
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
@@ -286,31 +304,23 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
+
+for movie in warnerbros_movies
+    # read each movies info
+    movie_title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie["rated"]
+    puts "#{movie_title} #{year_released} #{rated}"
+end
+
+# loop through roles in Batman Begins
+
 # Prints a header for the cast output
 puts ""
 puts "Top Cast"
 puts "========"
 puts ""
 
-# Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
-
-# ==== query to find all rows in roles with relationship to Batman Begins
-# "talk" to the roles table using the Roles model:
-
-batmanbegins_roles = Role.where({ "movie_id" => batmanbegins["id"] })
-puts batmanbegins_roles.inspect
-
-thedarkknight_roles = Role.where({ "movie_id" => thedarkknight["id"] })
-puts thedarkknight_roles.inspect
-
-thedarkknightrises_roles = Role.where({ "movie_id" => thedarkknightrises["id"] })
-puts thedarkknightrises_roles.inspect
-
-
-
-
-# loop through roles in Batman Begins
 
 for role in batmanbegins_roles
     # read each role row's character name
