@@ -68,7 +68,11 @@
 # The Dark Knight Rises  Anne Hathaway         Selina Kyle
 
 # Delete existing data, so you'll start fresh each time this script is run.
-# Use `Model.destroy_all` code.
+Studio.destroy_all 
+Actor.destroy_all 
+Role.destroy_all 
+Movie.destroy_all 
+
 # TODO!
 
 # Generate models and tables, according to the domain model.
@@ -77,6 +81,37 @@
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+# 1. insert new rows in the movies table with relationship to a studio
+
+# first query to find the row in companies for Apple
+warnerbros = Studio.find_by({ "name" => "Warner Bros." })
+
+# Insert rows
+new_studio1 = Studio.new
+new_studio1["name"] = "Warner Bros."
+new_studio1.save
+
+new_movie1 = Movie.new
+new_movie1["title"] = "Batman Begins"
+new_movie1["year_released"] = "2005"
+new_movie1["rated"] = "PG-13"
+new_movie1["studio_id"] = warnerbros["id"]
+new_movie1.save
+
+new_movie2 = Movie.new
+new_movie2["title"] = "The Dark Knight"
+new_movie1["year_released"] = "2008"
+new_movie1["rated"] = "PG-13"
+new_movie1["studio_id"] = warnerbros["id"]
+new_movie2.save
+
+new_movie3 = Movie.new
+new_movie3["title"] = "The Dark Knight Rises"
+new_movie1["year_released"] = "2012"
+new_movie1["rated"] = "PG-13"
+new_movie1["studio_id"] = warnerbros["id"]
+new_movie3.save
 
 # Prints a header for the movies output
 puts "Movies"
@@ -94,3 +129,24 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+
+
+
+# ====SANITY CHECKS TO SEE WHAT IS POPULATING====
+puts "studios: #{Studio.all.count}"
+puts "actors: #{Actor.all.count}"
+puts "roles: #{Role.all.count}"
+puts "movies: #{Movie.all.count}"
+
+all_studios = Studio.all
+puts all_studios.inspect
+
+all_actors = Actor.all
+puts all_actors.inspect
+
+all_roles = Role.all
+puts all_roles.inspect
+
+all_movies = Movie.all
+puts all_movies.inspect
