@@ -295,23 +295,66 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
+# ==== query to find all rows in roles with relationship to Batman Begins
+# "talk" to the roles table using the Roles model:
+
+batmanbegins_roles = Role.where({ "movie_id" => batmanbegins["id"] })
+puts batmanbegins_roles.inspect
+
+thedarkknight_roles = Role.where({ "movie_id" => thedarkknight["id"] })
+puts thedarkknight_roles.inspect
+
+thedarkknightrises_roles = Role.where({ "movie_id" => thedarkknightrises["id"] })
+puts thedarkknightrises_roles.inspect
 
 
 
-# ====SANITY CHECKS TO SEE WHAT IS POPULATING====
-puts "studios: #{Studio.all.count}"
-puts "actors: #{Actor.all.count}"
-puts "roles: #{Role.all.count}"
-puts "movies: #{Movie.all.count}"
 
-all_studios = Studio.all
-puts all_studios.inspect
+# loop through roles in Batman Begins
 
-all_actors = Actor.all
-puts all_actors.inspect
+for role in batmanbegins_roles
+    # read each role row's character name
+    character_name = role["character_name"]
+    puts "#{character_name}"
+end
 
-all_roles = Role.all
-puts all_roles.inspect
+for role in thedarkknight_roles
+    # read each role row's character name
+    character_name = role["character_name"]
+    puts "#{character_name}"
+end
 
-all_movies = Movie.all
-puts all_movies.inspect
+for role in thedarkknightrises_roles
+    # read each role row's character name
+    character_name = role["character_name"]
+    puts "#{character_name}"
+end
+
+
+   # Successful sample output is as shown:
+
+# Movies
+# ======
+
+# Batman Begins          2005           PG-13  Warner Bros.
+# The Dark Knight        2008           PG-13  Warner Bros.
+# The Dark Knight Rises  2012           PG-13  Warner Bros.
+
+# Top Cast
+# ========
+
+# Batman Begins          Christian Bale        Bruce Wayne
+# Batman Begins          Michael Caine         Alfred
+# Batman Begins          Liam Neeson           Ra's Al Ghul
+# Batman Begins          Katie Holmes          Rachel Dawes
+# Batman Begins          Gary Oldman           Commissioner Gordon
+# The Dark Knight        Christian Bale        Bruce Wayne
+# The Dark Knight        Heath Ledger          Joker
+# The Dark Knight        Aaron Eckhart         Harvey Dent
+# The Dark Knight        Michael Caine         Alfred
+# The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
+# The Dark Knight Rises  Christian Bale        Bruce Wayne
+# The Dark Knight Rises  Gary Oldman           Commissioner Gordon
+# The Dark Knight Rises  Tom Hardy             Bane
+# The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
+# The Dark Knight Rises  Anne Hathaway         Selina Kyle
